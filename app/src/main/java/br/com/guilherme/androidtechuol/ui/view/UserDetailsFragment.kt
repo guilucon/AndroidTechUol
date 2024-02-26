@@ -1,36 +1,28 @@
-package br.com.guilherme.androidtechuol.ui.fragments
+package br.com.guilherme.androidtechuol.ui.view
 
 import android.graphics.Rect
 import android.os.Bundle
-import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.LinearLayout
-import androidx.lifecycle.lifecycleScope
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
-import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import br.com.guilherme.androidtechuol.R
-import br.com.guilherme.androidtechuol.data.api.ApiConfig
 import br.com.guilherme.androidtechuol.data.models.Album
-import br.com.guilherme.androidtechuol.data.models.User
 import br.com.guilherme.androidtechuol.databinding.FragmentUserDetailsBinding
-import br.com.guilherme.androidtechuol.databinding.FragmentUserListBinding
 import br.com.guilherme.androidtechuol.ui.adapters.UserDetailsAdapter
-import br.com.guilherme.androidtechuol.ui.adapters.UserListAdapter
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
+import br.com.guilherme.androidtechuol.ui.viewmodel.UserDetailsViewModel
 
 class UserDetailsFragment : Fragment() {
     private var _binding: FragmentUserDetailsBinding? = null
     private val binding get() = _binding!!
     private lateinit var navController: NavController
-    private var userId = 0;
+    private lateinit var viewModel: UserDetailsViewModel
+    private var userId: Int? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -42,7 +34,9 @@ class UserDetailsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        viewModel = ViewModelProvider(this).get(UserDetailsViewModel::class.java)
         navController = findNavController()
+
         arguments?.let { args ->
             val name = args.getString("name")
             val email = args.getString("email")
@@ -53,26 +47,15 @@ class UserDetailsFragment : Fragment() {
             binding.userDetailsEmail.text = email
             binding.userDetailsUsername.text = username
         }
+
         val toolbar = binding.toolbar
         toolbar.setNavigationOnClickListener {
             navController.navigateUp()
         }
-        fetchAlbumList()
-    }
 
-    private fun fetchAlbumList() {
-        lifecycleScope.launch {
-            try {
-                val response = withContext(Dispatchers.IO) {
-                    ApiConfig().albumService.getAlbums(userId).execute()
-                }
-                if (response.isSuccessful) {
-                    val users = response.body()
-                    users?.let { updateRecyclerView(it) }
-                }
-            } catch (e: Exception) {
-                Log.e("UserDetailsFragment", "Error fetching album list", e)
-            }
+        userId?.let { viewModel.fetchAlbumList(it) }
+        viewModel.albumList.observe(viewLifecycleOwner) { albumList ->
+            albumList?.let { updateRecyclerView(it) }
         }
     }
 

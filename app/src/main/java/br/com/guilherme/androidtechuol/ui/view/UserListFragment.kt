@@ -1,31 +1,28 @@
-package br.com.guilherme.androidtechuol.ui.fragments
+package br.com.guilherme.androidtechuol.ui.view
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.lifecycleScope
+import androidx.fragment.app.viewModels
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import br.com.guilherme.androidtechuol.R
-import br.com.guilherme.androidtechuol.data.api.ApiConfig
 import br.com.guilherme.androidtechuol.data.models.User
 import br.com.guilherme.androidtechuol.databinding.FragmentUserListBinding
 import br.com.guilherme.androidtechuol.ui.adapters.UserListAdapter
-import kotlinx.coroutines.Dispatchers.IO
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
+import br.com.guilherme.androidtechuol.ui.viewmodel.UserListViewModel
 
 class UserListFragment : Fragment() {
     private var _binding: FragmentUserListBinding? = null
     private val binding get() = _binding!!
     private lateinit var navController: NavController
+    private val viewModel: UserListViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -38,8 +35,8 @@ class UserListFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         navController = findNavController()
-        fetchUserList()
         setupSearchView()
+        observeViewModel()
     }
 
     private fun setupSearchView() {
@@ -51,26 +48,16 @@ class UserListFragment : Fragment() {
 
             override fun onQueryTextChange(newText: String?): Boolean {
                 if (!newText.isNullOrEmpty()) {
-                    (binding.recyclerView.adapter as UserListAdapter).onQueryTextChange(newText)
+                    viewModel.filterUserList(newText)
                 }
                 return true
             }
         })
     }
 
-    private fun fetchUserList() {
-        lifecycleScope.launch {
-            try {
-                val response = withContext(IO) {
-                    ApiConfig().userService.getAll().execute()
-                }
-                if (response.isSuccessful) {
-                    val users = response.body()
-                    users?.let { updateRecyclerView(it) }
-                }
-            } catch (e: Exception) {
-                Log.e("UserListFragment", "Error fetching user list", e)
-            }
+    private fun observeViewModel() {
+        viewModel.userList.observe(viewLifecycleOwner) { userList ->
+            userList?.let { updateRecyclerView(it) }
         }
     }
 
@@ -82,6 +69,7 @@ class UserListFragment : Fragment() {
                 putString("email", user.email)
                 putInt("id", user.id)
             }
+            binding.searchView.setQuery("", true)
             navController.navigate(R.id.action_userListFragment_to_detailsUserFragment, bundle)
         }
         binding.recyclerView.adapter = adapter

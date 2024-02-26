@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/userListFragment"
-        android:name="br.com.guilherme.androidtechuol.ui.fragments.UserListFragment"
+        android:name="br.com.guilherme.androidtechuol.ui.view.UserListFragment"
         android:label="Lista de usuarios"
         tools:layout="@layout/fragment_user_list" >
         <action
@@ -17,7 +17,7 @@
 
     <fragment
         android:id="@+id/detailsUserFragment"
-        android:name="br.com.guilherme.androidtechuol.ui.fragments.UserDetailsFragment"
+        android:name="br.com.guilherme.androidtechuol.ui.view.UserDetailsFragment"
         android:label="Detalhes de usuario"
         tools:layout="@layout/fragment_user_details">
         <action
@@ -26,7 +26,7 @@
     </fragment>
     <fragment
         android:id="@+id/albumPhotosFragment"
-        android:name="br.com.guilherme.androidtechuol.ui.fragments.AlbumPhotosFragment"
+        android:name="br.com.guilherme.androidtechuol.ui.view.AlbumPhotosFragment"
         android:label="AlbumPhotosFragment"
         tools:layout="@layout/fragment_album_photos"/>
 </navigation>

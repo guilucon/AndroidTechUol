@@ -5,7 +5,7 @@
     <dimen name="imageViewHeight">150dp</dimen>
     <dimen name="imageViewPadding">15dp</dimen>
     <dimen name="textViewDefaultPaddingStart">16dp</dimen>
-    <dimen name="textViewSixteenPaddingTop">16dp</dimen>
+    <dimen name="textViewTwelvePaddingTop">12dp</dimen>
     <dimen name="textViewDefaultPaddingEnd">16dp</dimen>
     <dimen name="constraintLayoutHeightUserDetails">56dp</dimen>
     <dimen name="constraintLayoutElevationUserDetails">8dp</dimen>
@@ -21,4 +21,5 @@
     <dimen name="userDetailsRecyclerViewHeight">431dp</dimen>
     <dimen name="userDetailsRecyclerViewPadding">1dp</dimen>
     <dimen name="userListSearchViewElevation">8dp</dimen>
+    <dimen name="itemUserConstraintLayoutHeight">72dp</dimen>
 </resources>
