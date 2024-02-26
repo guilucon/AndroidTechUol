@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/userListFragment">
+
+    <fragment
+        android:id="@+id/userListFragment"
+        android:name="br.com.guilherme.androidtechuol.ui.fragments.UserListFragment"
+        android:label="Lista de usuarios"
+        tools:layout="@layout/fragment_user_list" >
+        <action
+            android:id="@+id/action_userListFragment_to_detailsUserFragment"
+            app:destination="@id/detailsUserFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/detailsUserFragment"
+        android:name="br.com.guilherme.androidtechuol.ui.fragments.UserDetailsFragment"
+        android:label="Detalhes de usuario"
+        tools:layout="@layout/fragment_user_details">
+        <action
+            android:id="@+id/action_detailsUserFragment_to_albumPhotosFragment"
+            app:destination="@id/albumPhotosFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/albumPhotosFragment"
+        android:name="br.com.guilherme.androidtechuol.ui.fragments.AlbumPhotosFragment"
+        android:label="AlbumPhotosFragment"
+        tools:layout="@layout/fragment_album_photos"/>
+</navigation>

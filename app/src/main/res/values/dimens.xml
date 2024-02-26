@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="elevationAppBar">32dp</dimen>
+    <dimen name="imageViewWidth">150dp</dimen>
+    <dimen name="imageViewHeight">150dp</dimen>
+    <dimen name="imageViewPadding">15dp</dimen>
+    <dimen name="textViewDefaultPaddingStart">16dp</dimen>
+    <dimen name="textViewSixteenPaddingTop">16dp</dimen>
+    <dimen name="textViewDefaultPaddingEnd">16dp</dimen>
+    <dimen name="constraintLayoutHeightUserDetails">56dp</dimen>
+    <dimen name="constraintLayoutElevationUserDetails">8dp</dimen>
+    <dimen name="userDetailsNomeSize">20sp</dimen>
+    <dimen name="userDetailsDefaultPaddingStart">24dp</dimen>
+    <dimen name="userDetailsUsernameSize">16sp</dimen>
+    <dimen name="userDetailsUsernamePaddingTop">14dp</dimen>
+    <dimen name="userDetailsNomeDefaultPaddingTop">24dp</dimen>
+    <dimen name="userDetailsEmailSize">16sp</dimen>
+    <dimen name="userDetailsAlbumDefaultPaddingTop">47dp</dimen>
+    <dimen name="userDetailsAlbunsDefaultPaddingBottom">14dp</dimen>
+    <dimen name="userDetailsAlbunsSize">14sp</dimen>
+    <dimen name="userDetailsRecyclerViewHeight">431dp</dimen>
+    <dimen name="userDetailsRecyclerViewPadding">1dp</dimen>
+    <dimen name="userListSearchViewElevation">8dp</dimen>
+</resources>

@@ -1,0 +1,9 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Base.Theme.AndroidTechUol" parent="Theme.Material3.DayNight.NoActionBar">
+        <!-- Customize your light theme here. -->
+        <item name="colorPrimary">@color/primaryTopAppColor</item>
+    </style>
+
+    <style name="Theme.AndroidTechUol" parent="Base.Theme.AndroidTechUol" />
+</resources>

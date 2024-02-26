@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/background_color"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="0dp"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/primaryAppColor"
+        android:elevation="@dimen/elevationAppBar"
+        app:title="@string/AppBarPerfilText"
+        app:titleTextColor="@color/black"
+        app:navigationIcon="@drawable/back_arrow_vector"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" >
+    </androidx.appcompat.widget.Toolbar>
+
+    <LinearLayout
+        android:id="@+id/linearLayoutContainerUserDetails"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar"
+        app:layout_constraintStart_toStartOf="parent"
+        android:orientation="vertical">
+        <TextView
+            android:id="@+id/userDetailsNome"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-black"
+            android:textSize="@dimen/userDetailsNomeSize"
+            android:paddingStart="@dimen/userDetailsDefaultPaddingStart"
+            android:paddingTop="@dimen/userDetailsNomeDefaultPaddingTop"
+            android:background="@null"
+            android:textColor="@color/black"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"/>
+        <TextView
+            android:id="@+id/userDetailsUsername"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif"
+            android:textSize="@dimen/userDetailsUsernameSize"
+            android:paddingTop="@dimen/userDetailsUsernamePaddingTop"
+            android:paddingStart="@dimen/userDetailsDefaultPaddingStart"
+            android:textColor="@color/black"
+            app:layout_constraintTop_toBottomOf="@id/toolbar"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+        <TextView
+            android:id="@+id/userDetailsEmail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif"
+            android:textSize="@dimen/userDetailsEmailSize"
+            android:paddingStart="@dimen/userDetailsDefaultPaddingStart"
+            android:textColor="@color/black"
+            app:layout_constraintTop_toBottomOf="@id/toolbar"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+        <TextView
+            android:id="@+id/userDetailsAlbuns"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif"
+            android:paddingTop="@dimen/userDetailsAlbumDefaultPaddingTop"
+            android:paddingStart="@dimen/userDetailsDefaultPaddingStart"
+            android:paddingBottom="@dimen/userDetailsAlbunsDefaultPaddingBottom"
+            android:textSize="@dimen/userDetailsAlbunsSize"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:text="@string/albunsText"
+            app:layout_constraintTop_toBottomOf="@id/toolbar"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+    </LinearLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/userDetailsRecyclerViewHeight"
+        android:background="@drawable/recyclerview_border"
+        android:padding="@dimen/userDetailsRecyclerViewPadding"
+        app:layout_constraintTop_toBottomOf="@id/linearLayoutContainerUserDetails"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>
