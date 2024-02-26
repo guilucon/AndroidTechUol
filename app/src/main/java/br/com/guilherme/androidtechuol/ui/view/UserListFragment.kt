@@ -69,7 +69,6 @@ class UserListFragment : Fragment() {
                 putString("email", user.email)
                 putInt("id", user.id)
             }
-            binding.searchView.setQuery("", true)
             navController.navigate(R.id.action_userListFragment_to_detailsUserFragment, bundle)
         }
         binding.recyclerView.adapter = adapter
